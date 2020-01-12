@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/semantic")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <div class="ui bottom attached segment pushable">
+        @*Add Side Bar*@
+        <div class="ui visible inverted left vertical sidebar menu">
+            <a class="item" href="@Url.Action("Index", "Home")">
+                <i class="home icon"></i>
+                Home
+            </a>
+            <a class="item">
+                <i class="block layout icon"></i>
+                Topics
+            </a>
+            <a class="item" href="@Url.Action( "Index", "Employees")">
+                <i class="smile icon"></i>
+                Employees
+            </a>
+            <a class="item">
+                <i class="calendar icon"></i>
+                History
+            </a>
+        </div>
+        <div class="pusher">
+            <div class="ui basic segment">
+                @RenderBody()
+            </div>
+        </div>
+
+    </div>
+    <div class="">
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+
+    
+    @Scripts.Render("~/bundles/jquery")
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    @Scripts.Render("~/bundles/semantic")
+    @Scripts.Render("~/bundles/custom")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
