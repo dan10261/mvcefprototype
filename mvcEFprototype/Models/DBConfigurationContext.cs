@@ -16,6 +16,7 @@ namespace mvcEFprototype.Models
             // Database.SetInitializer<DBConfigurationContext>(null);
         }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Account> Accounts { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
@@ -51,6 +52,6 @@ namespace mvcEFprototype.Models
 
         }
 
-        public System.Data.Entity.DbSet<mvcEFprototype.Models.Account> Accounts { get; set; }
+     
     }
 }

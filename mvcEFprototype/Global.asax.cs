@@ -26,6 +26,7 @@ namespace mvcEFprototype
 
             //Register global action filter
             GlobalFilters.Filters.Add(new CustomExceptionHandler());
+            
         }
     }
 }

@@ -7,25 +7,17 @@ namespace mvcEFprototype.Models
     using System.Data.Entity.Spatial;
 
     [Table("Employee")]
-    public partial class Employee:BaseEntity
+    public partial class Employee : BaseEntity
     {
         [Key]
         public int Id { get; set; }
-
- 
         public string FirstName { get; set; }
-
-    
         public string LastName { get; set; }
-
         public Nullable<int> Age { get; set; }
 
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-     
         public string Position { get; set; }
-
-      
         public string Office { get; set; }
 
         [DataType(DataType.Currency)]
