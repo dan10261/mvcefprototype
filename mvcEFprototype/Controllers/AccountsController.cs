@@ -8,7 +8,8 @@ using System.Web.Mvc;
 
 namespace mvcEFprototype.Controllers
 {
-    
+
+    [CustomLog]
     public class AccountsController : Controller
     {
         // GET: Accounts/Login
