@@ -10,9 +10,11 @@ using System.Web.Mvc;
 using mvcEFprototype.Models;
 using mvcEFprototype.Service;
 using System.IO;
+using mvcEFprototype.Filters;
 
 namespace mvcEFprototype.Controllers
 {
+    [UserAuthenticationFilter]
     public class EmployeesController : Controller
     {
         private IEmployeeService _employee_Service = null;

@@ -138,9 +138,12 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\CustomExceptionHandler.cs" />
+    <Compile Include="Filters\UserAuthenticationFilter.cs" />
+    <Compile Include="Models\Account.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Repository\EmplyeeRepository.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
@@ -817,6 +820,7 @@
     <Content Include="semantic\less\collections\form.less" />
     <Content Include="semantic\less\collections\breadcrumb.less" />
     <Content Include="Views\Shared\CustomErrorsException.cshtml" />
+    <Content Include="Views\Accounts\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

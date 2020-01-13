@@ -25,10 +25,21 @@
                 <i class="smile icon"></i>
                 Employees
             </a>
-            <a class="item">
-                <i class="calendar icon"></i>
-                History
-            </a>
+            @if (HttpContext.Current.Session["UserId"] is null)
+            {
+                <a class="item" href="@Url.Action("Login","Accounts")">
+                    <i class="calendar icon"></i>
+                    Login
+                </a>
+            }
+            else
+            {
+                <a class="item" href="@Url.Action("Logout","Accounts")">
+                    <i class="calendar icon"></i>
+                    Logout
+                </a>
+            }
+
         </div>
         <div class="pusher">
             <div class="ui basic segment">
@@ -44,7 +55,7 @@
     </div>
 
 
-    
+
     @Scripts.Render("~/bundles/jquery")
     @*@Scripts.Render("~/bundles/bootstrap")*@
     @Scripts.Render("~/bundles/semantic")

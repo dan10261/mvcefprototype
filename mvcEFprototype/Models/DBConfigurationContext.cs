@@ -50,5 +50,7 @@ namespace mvcEFprototype.Models
             }
 
         }
+
+        public System.Data.Entity.DbSet<mvcEFprototype.Models.Account> Accounts { get; set; }
     }
 }
