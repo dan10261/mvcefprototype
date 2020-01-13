@@ -27,9 +27,8 @@ namespace mvcEFprototype.Controllers
 
         // GET: Employees
         public async Task<ActionResult> Index()
-        {
-            
-            return View(await _employee_Service.GetAll());
+        {   
+             return View(await _employee_Service.GetAll());
         }
 
         // GET: Employees/Details/5
@@ -37,12 +36,14 @@ namespace mvcEFprototype.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                throw(new Exception("This employee does not exist"));
             }
             Employee employee = _employee_Service.GetById(id);
             if (employee == null)
             {
-                return HttpNotFound();
+                // return HttpNotFound();
+                throw (new Exception("This employee does not exist"));
             }
             return View(employee);
         }
@@ -58,18 +59,24 @@ namespace mvcEFprototype.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(/**[Bind(Include = "Id,FirstName,LastName,Age,Position,Office,Salary")]**/ Employee employee)
         {
-            if (ModelState.IsValid)
+            try
             {
-                using (var binaryReader = new BinaryReader(Request.Files[0].InputStream))
+                if (ModelState.IsValid)
                 {
-                    employee.UploadFile = binaryReader.ReadBytes(Request.Files[0].ContentLength); 
-                    employee.UploadFilename = Request.Files[0].FileName;
+                    using (var binaryReader = new BinaryReader(Request.Files[0].InputStream))
+                    {
+                        employee.UploadFile = binaryReader.ReadBytes(Request.Files[0].ContentLength);
+                        employee.UploadFilename = Request.Files[0].FileName;
+                    }
+                    _employee_Service.Insert(employee);
+                    _employee_Service.Save();
+                    return RedirectToAction("Index");
                 }
-                _employee_Service.Insert(employee);
-                _employee_Service.Save();
-                return RedirectToAction("Index");
             }
-
+            catch (Exception e)
+            {
+                throw (new Exception("Something is wrong"));
+            }
             return View(employee);
         }
 
@@ -78,12 +85,14 @@ namespace mvcEFprototype.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                throw (new Exception("This employee does not exist."));
+                //return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Employee employee = _employee_Service.GetById(id);
             if (employee == null)
             {
-                return HttpNotFound();
+                // return HttpNotFound();
+                throw (new Exception("This employee does not exist."));
             }
             return View(employee);
         }
@@ -93,20 +102,27 @@ namespace mvcEFprototype.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(/**[Bind(Include = "Id,FirstName,LastName,Age,Position,Office,Salary")]***/ Employee employee)
         {
-            if (ModelState.IsValid)
+            try
             {
-                using (var binaryReader = new BinaryReader(Request.Files[0].InputStream))
+                if (ModelState.IsValid)
                 {
-                    if(Request.Files[0].ContentLength!=0 && Request.Files[0].FileName.Length != 0) 
+                    using (var binaryReader = new BinaryReader(Request.Files[0].InputStream))
                     {
-                        employee.UploadFile = binaryReader.ReadBytes(Request.Files[0].ContentLength);
-                        employee.UploadFilename = Request.Files[0].FileName;
+                        if (Request.Files[0].ContentLength != 0 && Request.Files[0].FileName.Length != 0)
+                        {
+                            employee.UploadFile = binaryReader.ReadBytes(Request.Files[0].ContentLength);
+                            employee.UploadFilename = Request.Files[0].FileName;
+                        }
+
                     }
-                    
+                    _employee_Service.Update(employee);
+                    _employee_Service.Save();
+                    return RedirectToAction("Index");
                 }
-                _employee_Service.Update(employee);
-                _employee_Service.Save();
-                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                throw (new Exception("Something is wrong."));
             }
             return View(employee);
         }
@@ -114,14 +130,24 @@ namespace mvcEFprototype.Controllers
         // GET: Employees/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            Employee employee = null;
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    throw (new Exception("This employee does not exist."));
+                    // return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                employee = _employee_Service.GetById(id);
+                if (employee == null)
+                {
+                    throw (new Exception("This employee does not exist."));
+                    // return HttpNotFound();
+                }
             }
-            Employee employee = _employee_Service.GetById(id);
-            if (employee == null)
+            catch (Exception e)
             {
-                return HttpNotFound();
+
             }
             return View(employee);
         }
@@ -131,8 +157,15 @@ namespace mvcEFprototype.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            _employee_Service.Delete(id);
-            _employee_Service.Save();
+            try
+            {
+                _employee_Service.Delete(id);
+                _employee_Service.Save();
+            }
+            catch (Exception e)
+            {
+                throw (new Exception("Something is wrong."));
+            }
             return RedirectToAction("Index");
         }
 

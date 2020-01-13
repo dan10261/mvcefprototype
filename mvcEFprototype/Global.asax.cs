@@ -1,4 +1,5 @@
-﻿using mvcEFprototype.Models;
+﻿using mvcEFprototype.Filters;
+using mvcEFprototype.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -18,9 +19,13 @@ namespace mvcEFprototype
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            
+            //Enable code First approach
             //Database.SetInitializer<DBConfigurationContext>(new DropCreateDatabaseIfModelChanges<DBConfigurationContext>());
             Database.SetInitializer<DBConfigurationContext>(new DropCreateDatabaseAlways<DBConfigurationContext>());
-          
+
+            //Register global action filter
+            GlobalFilters.Filters.Add(new CustomExceptionHandler());
         }
     }
 }
