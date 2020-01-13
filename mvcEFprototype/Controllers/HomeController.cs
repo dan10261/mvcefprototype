@@ -8,6 +8,7 @@ using System.Web.Mvc;
 namespace mvcEFprototype.Controllers
 {
     [UserAuthenticationFilter]
+    [CustomLog]
     public class HomeController : Controller
     {
         public ActionResult Index()

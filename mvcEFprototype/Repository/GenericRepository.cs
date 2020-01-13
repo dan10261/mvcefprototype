@@ -10,8 +10,8 @@ namespace mvcEFprototype.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        public readonly DBConfigurationContext _context = null;
-        public  DbSet<T> table = null;
+        protected readonly DBConfigurationContext _context = null;
+        protected  DbSet<T> table = null;
         public GenericRepository()
         {
             this._context = new DBConfigurationContext();

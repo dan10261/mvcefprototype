@@ -15,6 +15,7 @@ using mvcEFprototype.Filters;
 namespace mvcEFprototype.Controllers
 {
     [UserAuthenticationFilter]
+    [CustomLog]
     public class EmployeesController : Controller
     {
         private IEmployeeService _employee_Service = null;

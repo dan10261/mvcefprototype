@@ -142,6 +142,7 @@
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\CustomExceptionHandler.cs" />
+    <Compile Include="Filters\CustomLogAttribute.cs" />
     <Compile Include="Filters\UserAuthenticationFilter.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\BaseEntity.cs" />
