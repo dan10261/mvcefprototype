@@ -97,8 +97,12 @@ namespace mvcEFprototype.Controllers
             {
                 using (var binaryReader = new BinaryReader(Request.Files[0].InputStream))
                 {
-                    employee.UploadFile = binaryReader.ReadBytes(Request.Files[0].ContentLength);
-                    employee.UploadFilename = Request.Files[0].FileName;
+                    if(Request.Files[0].ContentLength!=0 && Request.Files[0].FileName.Length != 0) 
+                    {
+                        employee.UploadFile = binaryReader.ReadBytes(Request.Files[0].ContentLength);
+                        employee.UploadFilename = Request.Files[0].FileName;
+                    }
+                    
                 }
                 _employee_Service.Update(employee);
                 _employee_Service.Save();

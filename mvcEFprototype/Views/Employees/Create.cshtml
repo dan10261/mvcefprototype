@@ -66,7 +66,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "" })
         <div class="col-md-10">
-            @Html.TextBoxFor(model => model.DOB, new {id="DOBDatePicker" })
+            @Html.TextBoxFor(model => model.DOB,"{0:d MMM yyyy}", new {id="DOBDatePicker" })
             @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "" })
         </div>
     </div>

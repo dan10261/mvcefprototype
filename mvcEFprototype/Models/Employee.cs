@@ -7,7 +7,7 @@ namespace mvcEFprototype.Models
     using System.Data.Entity.Spatial;
 
     [Table("Employee")]
-    public partial class Employee
+    public partial class Employee:BaseEntity
     {
         [Key]
         public int Id { get; set; }
