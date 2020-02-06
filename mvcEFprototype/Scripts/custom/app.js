@@ -5,6 +5,7 @@
             console.log("hloo");
         })
         $("#DOBDatePicker").datepicker();
+       
     });
 
 })

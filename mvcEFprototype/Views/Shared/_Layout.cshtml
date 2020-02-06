@@ -10,9 +10,9 @@
 </head>
 <body>
 
-    <div class="ui bottom attached segment pushable">
+    <div class="ui pushable " style="transform:none">
         @*Add Side Bar*@
-        <div class="ui visible inverted left vertical sidebar menu">
+        <div class="ui visible inverted left vertical sidebar menu   ">
             <a class="item" href="@Url.Action("Index", "Home")">
                 <i class="home icon"></i>
                 Home
@@ -41,8 +41,8 @@
             }
 
         </div>
-        <div class="pusher">
-            <div class="ui basic segment">
+        <div class="pusher content" style="width:calc(100%-250px)">
+            <div class="ui basic ">
                 @RenderBody()
             </div>
         </div>
